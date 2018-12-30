@@ -18,10 +18,12 @@ package com.microsoft.sample.taskdetail;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
-import android.support.test.filters.LargeTest;
+import androidx.test.filters.LargeTest;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.AndroidJUnit4;
 
+import com.microsoft.appcenter.espresso.Factory;
+import com.microsoft.appcenter.espresso.ReportHelper;
 import com.microsoft.sample.R;
 import com.microsoft.sample.TestUtils;
 import com.microsoft.sample.data.FakeTasksRemoteDataSource;
@@ -32,12 +34,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isChecked;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.IsNot.not;
 
 /**
@@ -77,6 +79,12 @@ public class TaskDetailScreenTest {
     public ActivityTestRule<TaskDetailActivity> mTaskDetailActivityTestRule =
             new ActivityTestRule<>(TaskDetailActivity.class, true /* Initial touch mode  */,
                     false /* Lazily launch activity */);
+
+    /**
+     * Instantiate the ReportHelper for MS AppCenter testing.
+     */
+    @Rule
+    public ReportHelper reportHelper = Factory.getReportHelper();
 
     private void loadActiveTask() {
         startActivityWithWithStubbedTask(ACTIVE_TASK);

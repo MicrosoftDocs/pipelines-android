@@ -19,11 +19,6 @@ package com.microsoft.sample.taskdetail;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,10 +29,16 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.common.base.Preconditions;
 import com.microsoft.sample.R;
 import com.microsoft.sample.addedittask.AddEditTaskActivity;
 import com.microsoft.sample.addedittask.AddEditTaskFragment;
-import com.google.common.base.Preconditions;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

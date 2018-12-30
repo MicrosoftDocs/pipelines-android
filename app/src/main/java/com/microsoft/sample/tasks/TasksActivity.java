@@ -18,16 +18,9 @@ package com.microsoft.sample.tasks;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.VisibleForTesting;
-import android.support.design.widget.NavigationView;
-import android.support.test.espresso.IdlingResource;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.google.android.material.navigation.NavigationView;
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
@@ -36,6 +29,14 @@ import com.microsoft.sample.R;
 import com.microsoft.sample.statistics.StatisticsActivity;
 import com.microsoft.sample.util.ActivityUtils;
 import com.microsoft.sample.util.EspressoIdlingResource;
+
+import androidx.annotation.VisibleForTesting;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.test.espresso.IdlingResource;
 
 public class TasksActivity extends AppCompatActivity {
 

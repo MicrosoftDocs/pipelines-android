@@ -16,15 +16,18 @@
 
 package com.microsoft.sample.data.source.local;
 
-import android.support.test.InstrumentationRegistry;
-import android.support.test.filters.LargeTest;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.filters.LargeTest;
+import androidx.test.runner.AndroidJUnit4;
 
+import com.microsoft.appcenter.espresso.Factory;
+import com.microsoft.appcenter.espresso.ReportHelper;
 import com.microsoft.sample.data.Task;
 import com.microsoft.sample.data.source.TasksDataSource;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -55,6 +58,12 @@ public class TasksLocalDataSourceTest {
 
     private TasksLocalDataSource mLocalDataSource;
 
+    /**
+     * Instantiate the ReportHelper for MS AppCenter testing.
+     */
+    @Rule
+    public ReportHelper reportHelper = Factory.getReportHelper();
+
     @Before
     public void setup() {
         mLocalDataSource = TasksLocalDataSource.getInstance(
@@ -64,6 +73,7 @@ public class TasksLocalDataSourceTest {
     @After
     public void cleanUp() {
         mLocalDataSource.deleteAllTasks();
+        reportHelper.label("Stopping App");
     }
 
     @Test
