@@ -17,7 +17,7 @@
 package com.microsoft.sample;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.microsoft.sample.data.source.local.TasksLocalDataSource;
 import com.microsoft.sample.data.source.TasksDataSource;

@@ -17,7 +17,6 @@
 package com.microsoft.sample.data.source.remote;
 
 import android.os.Handler;
-import android.support.annotation.NonNull;
 
 import com.microsoft.sample.data.Task;
 import com.microsoft.sample.data.source.TasksDataSource;
@@ -26,6 +25,8 @@ import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import androidx.annotation.NonNull;
 
 /**
  * Implementation of the data source that adds a latency simulating network.

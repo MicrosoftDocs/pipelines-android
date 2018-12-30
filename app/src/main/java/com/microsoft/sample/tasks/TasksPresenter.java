@@ -17,7 +17,7 @@
 package com.microsoft.sample.tasks;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.microsoft.sample.addedittask.AddEditTaskActivity;
 import com.microsoft.sample.data.Task;
