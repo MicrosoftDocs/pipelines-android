@@ -36,4 +36,5 @@ ext {
     runnerVersion = '0.5'
     rulesVersion = '0.5'
     espressoVersion = '3.0.2'
+    appCenterSdkVersion = '1.11.0'
 }
