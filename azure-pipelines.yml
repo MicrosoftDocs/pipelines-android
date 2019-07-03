@@ -26,3 +26,31 @@ steps:
     pathToPublish: '$(build.artifactStagingDirectory)'
     artifactName: 'drop'
     artifactType: 'container'
+
+# Installing the AppCenter CLI
+- task: CmdLine@2
+  inputs:
+    script: 'sudo npm install -g appcenter-cli'
+
+# Connecting to the AppCenter CLI
+- task: CmdLine@2
+  inputs:
+    script: 'appcenter login --token {YOUR-TOKEN}'
+
+# Submitting the APP for instrumented testing    
+- task: CmdLine@2
+  inputs:
+    script: 'appcenter test run espresso --app "{PATH_APPCENTER}" --devices "{YOU_DEVICE}" --app-path app/build/outputs/apk/debug/app-debug.apk   --test-series "master" --locale "en_US" --build-dir app/build/outputs/apk/androidTest/debug/ --debug'
+
+
+# Making APP available in APP center
+- task: AppCenterDistribute@3
+  inputs:
+    serverEndpoint: 'AppCenter'
+    appSlug: '{PATH_APPCENTER}'
+    appFile: '**/app/build/outputs/apk/debug/app-debug.apk'
+    symbolsOption: 'Android'
+    releaseNotesOption: 'input'
+    releaseNotesInput: 'Versão nova'
+    destinationType: 'groups'
+
