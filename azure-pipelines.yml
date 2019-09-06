@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
 
 pool:
-  vmImage: 'macOS 10.13'
+  vmImage: 'macOS-10.13'
 
 steps:
 - task: Gradle@2
@@ -12,17 +12,23 @@ steps:
     workingDirectory: ''
     gradleWrapperFile: 'gradlew'
     gradleOptions: '-Xmx3072m'
-    publishJUnitResults: false
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
-    tasks: 'assembleDebug'
+    tasks: 'assembleDebug test'
+  displayName: gradlew assembleDebug test
 
 - task: CopyFiles@2
   inputs:
     contents: '**/*.apk'
     targetFolder: '$(build.artifactStagingDirectory)'
+  displayName: Copy .apk files to artifact staging directory
 
 - task: PublishBuildArtifacts@1
   inputs:
     pathToPublish: '$(build.artifactStagingDirectory)'
     artifactName: 'drop'
     artifactType: 'container'
+  displayName: Publish artifacts
