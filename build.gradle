@@ -26,9 +26,9 @@ task clean(type: Delete) {
 ext {
     // Sdk and tools
     minSdkVersion = 10
-    targetSdkVersion = 25
-    compileSdkVersion = 25
-    buildToolsVersion = '25.0.0'
+    targetSdkVersion = 28
+    compileSdkVersion = 28
+    buildToolsVersion = '28.0.3'
 
     // App dependencies
     supportLibraryVersion = '25.3.1'
