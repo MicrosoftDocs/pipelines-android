@@ -7,6 +7,8 @@ pool:
   vmImage: 'macOS-10.14'
 
 steps:
+- script: ./start_emulators
+  displayName: Start emulators
 - task: Gradle@2
   inputs:
     workingDirectory: ''
@@ -19,8 +21,7 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug test'
   displayName: gradlew assembleDebug test
-- script: ./start_emulators
-  displayName: Start emulators
+
 
 # - task: CopyFiles@2
 #   inputs:
