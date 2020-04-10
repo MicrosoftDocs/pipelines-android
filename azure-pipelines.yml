@@ -27,6 +27,7 @@ stages:
           tasks: 'assembleDebug test'
         displayName: gradlew assembleDebug test
       - script: ./wait_for_emulator
+        displayName: Wait for emulator
       - task: Gradle@2
         inputs:
           workingDirectory: ''
