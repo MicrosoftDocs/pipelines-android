@@ -6,45 +6,36 @@
 pool:
   vmImage: 'macOS-10.14'
 
-steps:
-# - task: Gradle@2
-#   inputs:
-#     workingDirectory: ''
-#     gradleWrapperFile: 'gradlew'
-#     gradleOptions: '-Xmx3072m'
-#     javaHomeOption: 'JDKVersion'
-#     jdkVersionOption: '1.8'
-#     jdkArchitectureOption: 'x64'
-#     publishJUnitResults: true
-#     testResultsFiles: '**/TEST-*.xml'
-#     tasks: 'assembleDebug test'
-#   displayName: gradlew assembleDebug test
+stages:
+  - stage:
+    jobs:
+      steps:
+      - task: Gradle@2
+        inputs:
+          workingDirectory: ''
+          gradleWrapperFile: 'gradlew'
+          gradleOptions: '-Xmx3072m'
+          javaHomeOption: 'JDKVersion'
+          jdkVersionOption: '1.8'
+          jdkArchitectureOption: 'x64'
+          publishJUnitResults: true
+          testResultsFiles: '**/TEST-*.xml'
+          tasks: 'assembleDebug test'
+        displayName: gradlew assembleDebug test
 
-- script: ./start_emulators
-  displayName: Start emulators
-
-- task: Gradle@2
-  inputs:
-    workingDirectory: ''
-    gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    tasks: 'connectedAndroidTest'
-  displayName: gradlew connectedAndroidTest
-
-# - task: CopyFiles@2
-#   inputs:
-#     contents: '**/*.apk'
-#     targetFolder: '$(build.artifactStagingDirectory)'
-#   displayName: Copy .apk files to artifact staging directory
-
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     pathToPublish: '$(build.artifactStagingDirectory)'
-#     artifactName: 'drop'
-#     artifactType: 'container'
-#   displayName: Publish artifacts
+      jobs:
+        steps:
+        - script: ./start_emulators
+          displayName: Start emulators
+        - task: Gradle@2
+          inputs:
+            workingDirectory: ''
+            gradleWrapperFile: 'gradlew'
+            gradleOptions: '-Xmx3072m'
+            javaHomeOption: 'JDKVersion'
+            jdkVersionOption: '1.8'
+            jdkArchitectureOption: 'x64'
+            publishJUnitResults: true
+            testResultsFiles: '**/TEST-*.xml'
+            tasks: 'connectedAndroidTest'
+          displayName: gradlew connectedAndroidTest
