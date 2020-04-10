@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+until adb devices -l | grep "emulator"
+do
+  echo "Waiting for emulator..."
+  sleep 5
+done

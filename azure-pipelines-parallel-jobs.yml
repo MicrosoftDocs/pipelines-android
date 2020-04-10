@@ -12,8 +12,6 @@ stages:
     - job:
       displayName: Running build and unit tests
       steps:
-      - script: ./start_emulators &
-        displayName: Start emulators
       - task: Gradle@2
         inputs:
           workingDirectory: ''
@@ -26,7 +24,12 @@ stages:
           testResultsFiles: '**/TEST-*.xml'
           tasks: 'assembleDebug test'
         displayName: gradlew assembleDebug test
-      - script: ./wait_for_emulator
+
+    - job:
+      displayName: Running instrumented tests
+      steps:
+      - script: ./start_emulators
+        displayName: Start emulators
       - task: Gradle@2
         inputs:
           workingDirectory: ''
