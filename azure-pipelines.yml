@@ -1,42 +1,31 @@
-# Android
-# Build your Android project with Gradle.
-# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/android
+variables:
+  - template: global/vars.yml
+  - group: credentials
 
-pool:
-  vmImage: 'macOS-10.14'
+trigger:
+  - master
+  - pull/*
+  - build/*
 
 stages:
-  - stage:
-    jobs:
-    - job:
-      displayName: Running build and unit tests
-      steps:
-      - script: ./start_emulators &
-        displayName: Start emulators
-      - task: Gradle@2
-        inputs:
-          workingDirectory: ''
-          gradleWrapperFile: 'gradlew'
-          gradleOptions: '-Xmx3072m'
-          javaHomeOption: 'JDKVersion'
-          jdkVersionOption: '1.8'
-          jdkArchitectureOption: 'x64'
-          publishJUnitResults: true
-          testResultsFiles: '**/TEST-*.xml'
-          tasks: 'assembleDebug test'
-        displayName: gradlew assembleDebug test
-      - script: ./wait_for_emulator
-        displayName: Wait for emulator
-      - task: Gradle@2
-        inputs:
-          workingDirectory: ''
-          gradleWrapperFile: 'gradlew'
-          gradleOptions: '-Xmx3072m'
-          javaHomeOption: 'JDKVersion'
-          jdkVersionOption: '1.8'
-          jdkArchitectureOption: 'x64'
-          publishJUnitResults: true
-          testResultsFiles: '**/TEST-*.xml'
-          tasks: 'connectedAndroidTest'
-        displayName: gradlew connectedAndroidTest
+- stage:
+  displayName: Build & Test
+  jobs:
+  - template: quality/copyright_check.yml
+  - job:
+    displayName: Running build and unit tests
+    pool:
+      vmImage: macOS-10.14
+    steps:
+    - task: Gradle@2
+      inputs:
+        workingDirectory: ''
+        gradleWrapperFile: 'gradlew'
+        gradleOptions: '-Xmx3072m'
+        javaHomeOption: 'JDKVersion'
+        jdkVersionOption: '1.8'
+        jdkArchitectureOption: 'x64'
+        publishJUnitResults: true
+        testResultsFiles: '**/TEST-*.xml'
+        tasks: 'assembleDebug test'
+      displayName: gradlew assembleDebug test

@@ -1,0 +1,42 @@
+# Android
+# Build your Android project with Gradle.
+# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/android
+
+pool:
+  vmImage: 'macOS-10.14'
+
+stages:
+  - stage:
+    jobs:
+    - job:
+      displayName: Running build and unit tests
+      steps:
+      - script: ./start_emulators &
+        displayName: Start emulators
+      - task: Gradle@2
+        inputs:
+          workingDirectory: ''
+          gradleWrapperFile: 'gradlew'
+          gradleOptions: '-Xmx3072m'
+          javaHomeOption: 'JDKVersion'
+          jdkVersionOption: '1.8'
+          jdkArchitectureOption: 'x64'
+          publishJUnitResults: true
+          testResultsFiles: '**/TEST-*.xml'
+          tasks: 'assembleDebug test'
+        displayName: gradlew assembleDebug test
+      - script: ./wait_for_emulator
+        displayName: Wait for emulator
+      - task: Gradle@2
+        inputs:
+          workingDirectory: ''
+          gradleWrapperFile: 'gradlew'
+          gradleOptions: '-Xmx3072m'
+          javaHomeOption: 'JDKVersion'
+          jdkVersionOption: '1.8'
+          jdkArchitectureOption: 'x64'
+          publishJUnitResults: true
+          testResultsFiles: '**/TEST-*.xml'
+          tasks: 'connectedAndroidTest'
+        displayName: gradlew connectedAndroidTest
