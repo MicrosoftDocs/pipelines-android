@@ -1,13 +1,13 @@
 resources:
   repositories:
-    - repository: my_templates
-      type: github
-      name: tomtompilot/nk2ui-pipeline-templates
-      ref: 'refs/heads/master'
-      endpoint: tomtompilot
+  - repository: templates
+    type: github
+    name: tomtompilot/nk2ui-pipeline-templates
+    ref: 'refs/heads/master'
+    endpoint: tomtompilot
 
 variables:
-  - template: global/vars.yml
+  - template: global/vars.yml@templates
   - group: credentials
 
 trigger:
@@ -19,7 +19,7 @@ stages:
 - stage:
   displayName: Build & Test
   jobs:
-  - template: quality/copyright_check.yml
+  - template: quality/copyright_check.yml@templates
   - job:
     displayName: Running build and unit tests
     pool:
