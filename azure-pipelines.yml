@@ -12,9 +12,11 @@ variables:
 
 trigger:
   batch: true
-  - master
-  - pull/*
-  - build/*
+  branches:
+    include:
+      - master
+      - pull/*
+      - build/*
 
 stages:
 - stage:
