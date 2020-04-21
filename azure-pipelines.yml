@@ -25,6 +25,7 @@ stages:
     pool:
       vmImage: macOS-10.14
     steps:
+    - script: sleep 180
     - task: Gradle@2
       inputs:
         workingDirectory: ''
