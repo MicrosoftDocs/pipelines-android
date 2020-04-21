@@ -11,6 +11,7 @@ variables:
   - group: credentials
 
 trigger:
+  batch: true
   - master
   - pull/*
   - build/*
