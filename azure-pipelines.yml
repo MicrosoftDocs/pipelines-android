@@ -10,11 +10,11 @@ variables:
   - template: global/vars.yml@templates
   - group: credentials
 
-trigger:
-  batch: true
-  branches:
-    include:
-      - master
+# trigger:
+#   batch: true
+#   branches:
+#     include:
+#       - master
 
 pr:
   - feature/**
