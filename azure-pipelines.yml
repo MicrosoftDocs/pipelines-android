@@ -13,7 +13,8 @@ variables:
 trigger:
   batch: true
   branches:
-    - master
+    include:
+      - master
 
 pr:
   - feature/**
