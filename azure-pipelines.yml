@@ -11,12 +11,14 @@ variables:
   - group: credentials
 
 trigger:
+  batch: true
   branches:
     include:
       - master
-        batch: true
-      - pull/*
-      - build/*
+
+trigger:
+  - pull/*
+  - build/*
 
 stages:
 - stage:
