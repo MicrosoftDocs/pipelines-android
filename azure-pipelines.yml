@@ -11,7 +11,7 @@ variables:
   - group: credentials
 
 trigger:
-  batch: $[eq(variables['Build.SourceBranchName'], 'master')]
+  batch: eq(variables['Build.SourceBranchName'], 'master')
   branches:
     include:
       - master
