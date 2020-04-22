@@ -13,11 +13,11 @@ variables:
 pr:
   - master
 
-trigger:
-  batch: true
-  branches:
-    include:
-      - master
+# trigger:
+#   batch: true
+#   branches:
+#     include:
+#       - master
 
 stages:
 - stage:
