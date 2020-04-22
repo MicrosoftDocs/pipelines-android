@@ -9,14 +9,15 @@ resources:
 variables:
   - template: global/vars.yml@templates
   - group: credentials
+  - batchStatus: eq(variables['Build.SourceBranch'], 'refs/heads/master')
 
 trigger:
-  batch: '$(eq(variables['Build.SourceBranchName'], 'master'))'
+  batch: ${{ batchStatus }}
   branches:
     include:
       - master
-      - pull/**
-      - build/**
+      # - pull/**
+      # - build/**
 
 stages:
 - stage:
