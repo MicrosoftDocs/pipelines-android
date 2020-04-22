@@ -10,12 +10,8 @@ variables:
   - template: global/vars.yml@templates
   - group: credentials
 
-# pr:
-#   - master
-
-trigger:
-  - pull/**
-  - build/**
+pr:
+  - master
 
 trigger:
   batch: true
