@@ -16,9 +16,8 @@ trigger:
     include:
       - master
 
-trigger:
-  - pull/*
-  - build/*
+pr:
+  - feature/**
 
 stages:
 - stage:
