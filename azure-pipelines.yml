@@ -15,8 +15,8 @@ trigger:
   branches:
     include:
       - master
-      # - pull/**
-      # - build/**
+      - pull/**
+      - build/**
 
 stages:
 - stage:
