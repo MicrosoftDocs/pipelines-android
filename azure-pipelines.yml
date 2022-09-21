@@ -37,6 +37,6 @@ steps:
   inputs:
     apkFiles: '**/*.apk'
     apksignerKeystoreFile: 'secret_andriod.jks'
-    apksignerKeystorePassword: '123456'
+    apksignerKeystorePassword: '$(keystorepassword)'
     apksignerKeystoreAlias: 'andriod_secret'
-    apksignerKeyPassword: '123456'
+    apksignerKeyPassword: '$(keystorepassword)'
