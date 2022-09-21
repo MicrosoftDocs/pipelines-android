@@ -40,3 +40,14 @@ steps:
     apksignerKeystorePassword: '$(keystorepassword)'
     apksignerKeystoreAlias: 'andriod_secret'
     apksignerKeyPassword: '$(keystorepassword)'
+
+
+- task: AppCenterDistribute@3
+  inputs:
+    serverEndpoint: 'Appcenter_andriod_demo'
+    appSlug: 'dayanandachari.v-nagarro.com/demo_andriod'
+    appFile: '$(outputDirectory)/*.apk'
+    buildVersion: '1.0'
+    symbolsOption: 'Android'
+    releaseNotesOption: 'input'
+    destinationType: 'groups'
