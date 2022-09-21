@@ -50,4 +50,5 @@ steps:
     buildVersion: '1.0'
     symbolsOption: 'Android'
     releaseNotesOption: 'input'
+    releaseNotesInput: 'test release'
     destinationType: 'groups'
