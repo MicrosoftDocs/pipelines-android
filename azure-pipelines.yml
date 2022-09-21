@@ -18,7 +18,10 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug' 
+    VersionNumber: '$(Build.BuildNumber)'
   displayName: gradlew assembleDebug test
+  
+ 
   
 - task: CopyFiles@2
   inputs:
