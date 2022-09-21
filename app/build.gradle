@@ -9,8 +9,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 2
-        versionName "2.0"
-
+        versionName System.getenv('Build_version')
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
