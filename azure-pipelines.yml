@@ -6,6 +6,9 @@
 pool:
   vmImage: 'macOS-latest'
 
+variables:
+- group: 'Andriod_variable_group_demo'
+
 steps:
 - task: Gradle@2
   inputs:
