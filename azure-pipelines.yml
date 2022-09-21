@@ -17,7 +17,7 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
-    tasks: 'assembleDebug test --stacktrace' 
+    tasks: 'assembleDebug test ' 
   displayName: gradlew assembleDebug test
   
 - task: CopyFiles@2
@@ -46,7 +46,7 @@ steps:
   inputs:
     serverEndpoint: 'Appcenter_andriod_demo'
     appSlug: 'dayanandachari.v-nagarro.com/demo_andriod'
-    appFile: '$(outputDirectory)/*.apk'
+    appFile: '$(build.artifactStagingDirectory)/*.apk'
     buildVersion: '1.0'
     symbolsOption: 'Android'
     releaseNotesOption: 'input'
