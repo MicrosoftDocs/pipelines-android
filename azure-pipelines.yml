@@ -20,8 +20,9 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
-    tasks: 'assembleDebug' 
-    VersionNumber: '$(Build.BuildNumber)'
+    tasks: 'assembleDebug'
+  env:
+    Build_version: $(Build_version)
   displayName: gradlew assembleDebug test
   
  
