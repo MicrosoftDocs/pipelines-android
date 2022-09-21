@@ -46,7 +46,7 @@ steps:
   inputs:
     serverEndpoint: 'Appcenter_andriod_demo'
     appSlug: 'dayanandachari.v-nagarro.com/demo_andriod'
-    appFile: '$(build.artifactStagingDirectory)/*.apk'
+    appFile: '#/13518797/drop'
     buildVersion: '1.0'
     symbolsOption: 'Android'
     releaseNotesOption: 'input'
