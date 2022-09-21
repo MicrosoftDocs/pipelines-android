@@ -32,3 +32,11 @@ steps:
     artifactName: 'drop'
     artifactType: 'container'
   displayName: Publish artifacts
+
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: '**/*.apk'
+    apksignerKeystoreFile: 'secret_andriod.jks'
+    apksignerKeystorePassword: '123456'
+    apksignerKeystoreAlias: 'andriod_secret'
+    apksignerKeyPassword: '123456'
