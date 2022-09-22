@@ -23,7 +23,7 @@ steps:
     tasks: 'assembleDebug'
   env:
     Build_version: $(Build_version)
-    build_code: $(build_code)
+    build_code: $(Build.BuildId)
   displayName: gradlew assembleDebug test
   
  
@@ -45,9 +45,6 @@ steps:
   inputs:
     apkFiles: '**/*.apk'
     apksignerKeystoreFile: 'secret_andriod.jks'
-    env:
-    Key_password: $(Key_password)
-    keystore_password: $ (keystore_password)
     apksignerKeystorePassword: '$(Key_password)'
     apksignerKeystoreAlias: 'andriod_secret'
     apksignerKeyPassword: '$(keystore_password)'
