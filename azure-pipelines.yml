@@ -3,6 +3,15 @@
 # Add steps that test, sign, and distribute the APK, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
 
+trigger:
+  branches:
+    include:
+    - master
+    - feature
+  paths:
+    include:
+    - docs/*.md
+    
 pool:
   vmImage: 'macOS-latest'
 
@@ -20,7 +29,7 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
-    tasks: 'assembleDebug'
+    tasks: 'assembleDebug test'
   env:
     Build_version: $(Build_version)
     build_code: $(Build.BuildId)
