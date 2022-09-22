@@ -22,7 +22,8 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug'
   env:
-    Build_version: $(Build_version).$(Rev:r)
+    Build_version: $(Build_version)
+    build_code: $(build_code)
   displayName: gradlew assembleDebug test
   
  
