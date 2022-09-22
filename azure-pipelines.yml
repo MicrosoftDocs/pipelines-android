@@ -44,9 +44,12 @@ steps:
   inputs:
     apkFiles: '**/*.apk'
     apksignerKeystoreFile: 'secret_andriod.jks'
-    apksignerKeystorePassword: '$(keystorepassword)'
+    env:
+    Key_password: $(Key_password)
+    keystore_password: $ (keystore_password)
+    apksignerKeystorePassword: '$(Key_password)'
     apksignerKeystoreAlias: 'andriod_secret'
-    apksignerKeyPassword: '$(keystorepassword)'
+    apksignerKeyPassword: '$(keystore_password)'
 
 
 - task: AppCenterDistribute@3
