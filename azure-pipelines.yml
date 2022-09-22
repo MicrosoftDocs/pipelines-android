@@ -11,7 +11,8 @@ trigger:
   paths:
     include:
     - docs/*.md
-    
+
+
 pool:
   vmImage: 'macOS-latest'
 
