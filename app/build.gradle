@@ -8,7 +8,7 @@ android {
         applicationId "com.example.android.architecture.blueprints.todomvp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode System.getenv('build_code') 
+        versionCode System.getenv('build_code').toInteger()
         versionName System.getenv('Build_version')
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
