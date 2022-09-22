@@ -23,7 +23,7 @@ steps:
     tasks: 'assembleDebug'
   env:
     Build_version: $(Build_version)
-    build_code: $(Build.BuildId)
+    build_code: $(Rev:.r)
   displayName: gradlew assembleDebug test
   
  
