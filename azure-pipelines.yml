@@ -3,8 +3,23 @@
 # Add steps that test, sign, and distribute the APK, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
 
+trigger:
+  branches:
+    include:
+    - master
+    - dev1
+    
+pr:
+  branches:
+    include:
+      - master
+      - dev1
+   
 pool:
   vmImage: 'macOS-latest'
+
+variables:
+- group: 'Andriod_variable_group_demo'
 
 steps:
 - task: Gradle@2
@@ -18,8 +33,13 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug test'
+  env:
+    Build_version: $(Build_version)
+    build_code: $(Build.BuildId)
   displayName: gradlew assembleDebug test
-
+  
+ 
+  
 - task: CopyFiles@2
   inputs:
     contents: '**/*.apk'
@@ -32,3 +52,26 @@ steps:
     artifactName: 'drop'
     artifactType: 'container'
   displayName: Publish artifacts
+
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: '**/*.apk'
+    apksignerKeystoreFile: 'secret_andriod.jks'
+    apksignerKeystorePassword: '$(Key_password)'
+    apksignerKeystoreAlias: 'andriod_secret'
+    apksignerKeyPassword: '$(keystore_password)'
+
+
+- task: AppCenterDistribute@3
+  inputs:
+    serverEndpoint: 'Appcenter_andriod_demo'
+    appSlug: 'dayanandachari.v-nagarro.com/practice_andriod'
+    appFile: 'app/build/outputs/apk/app-prod-debug.apk'
+    symbolsOption: 'Android'
+    releaseNotesOption: 'input'
+    releaseNotesInput: 'test release'
+    destinationType: 'groups'
+    distributionGroupId: '4a902076-d7f6-4d10-a73e-7ff89da51441'
+    
+    
+
