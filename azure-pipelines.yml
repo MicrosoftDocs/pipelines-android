@@ -7,11 +7,16 @@ trigger:
   branches:
     include:
     - master
-    - feature
   paths:
     include:
     - docs/*.md
-    
+
+
+pr:
+  branches:
+    include:
+      - master
+   
 pool:
   vmImage: 'macOS-latest'
 
