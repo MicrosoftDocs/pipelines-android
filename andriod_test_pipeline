@@ -1,0 +1,29 @@
+pr:
+  branches:
+    include:
+      - master
+   
+pool:
+  vmImage: 'macOS-latest'
+
+variables:
+- group: 'Andriod_variable_group_demo'
+
+steps:
+- task: Gradle@2
+  inputs:
+    workingDirectory: ''
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    tasks: 'assembleDebug test'
+  env:
+    Build_version: $(Build_version)
+    build_code: $(Build.BuildId)
+  displayName: gradlew assembleDebug test
+
+
