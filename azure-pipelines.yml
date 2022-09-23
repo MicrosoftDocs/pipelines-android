@@ -72,4 +72,6 @@ steps:
     releaseNotesInput: 'test release'
     destinationType: 'groups'
     distributionGroupId: '4a902076-d7f6-4d10-a73e-7ff89da51441'
+    
+    
 
