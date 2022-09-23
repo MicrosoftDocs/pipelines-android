@@ -26,3 +26,4 @@ steps:
     build_code: $(Build.BuildId)
   displayName: gradlew assembleDebug test
 
+
