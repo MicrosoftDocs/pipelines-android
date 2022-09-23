@@ -14,6 +14,7 @@ pr:
   branches:
     include:
       - master
+      - dev1
    
 pool:
   vmImage: 'macOS-latest'
