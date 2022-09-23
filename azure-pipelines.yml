@@ -7,14 +7,14 @@ trigger:
   branches:
     include:
     - master
-    - Dev1
+    - dev1
 
 
 pr:
   branches:
     include:
       - master
-      - Dev1
+      - dev1
    
 pool:
   vmImage: 'macOS-latest'
