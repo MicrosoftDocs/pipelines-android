@@ -7,12 +7,14 @@ trigger:
   branches:
     include:
     - master
-    - feature
-  paths:
+    - dev1
+
+pr:
+  branches:
     include:
-    - docs/*.md
-
-
+      - master
+      - dev1
+   
 pool:
   vmImage: 'macOS-latest'
 
@@ -70,3 +72,4 @@ steps:
     releaseNotesInput: 'test release'
     destinationType: 'groups'
     distributionGroupId: '4a902076-d7f6-4d10-a73e-7ff89da51441'
+
