@@ -24,7 +24,9 @@ resources:
 
 steps:
 - template: build_andriod_template.yml@andriod_templates
-    
+  parameters:
+    jdkVersionOption: '$(jdkVersionOption)'
+    Build_version: '$(Build_version)' 
  
   
 - task: CopyFiles@2
