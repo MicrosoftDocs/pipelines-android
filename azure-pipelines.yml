@@ -15,6 +15,13 @@ pool:
 variables:
 - group: 'Andriod_variable_group_demo'
 
+resources: 
+  repositories: 
+    - repository: andriod_templates
+      type: github
+      name: Dayanandachari/andriod_templates
+      endpoint: 'Dayanandachari'
+
 steps:
 - task: Gradle@2
   inputs:
