@@ -23,22 +23,7 @@ resources:
       endpoint: 'Dayanandachari'
 
 steps:
-- task: Gradle@2
-  inputs:
-    workingDirectory: ''
-    gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    tasks: 'assembleDebug'
-  env:
-    Build_version: $(Build_version)
-    build_code: $(Build.BuildId)
-  displayName: gradlew assembleDebug test
-  
+- template: build_andriod_template.yml@andriod_templates  
  
   
 - task: CopyFiles@2
