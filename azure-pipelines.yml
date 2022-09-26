@@ -23,7 +23,12 @@ resources:
       endpoint: 'Dayanandachari'
 
 steps:
-- template: build_andriod_template.yml@andriod_templates  
+- template: build_andriod_template.yml@andriod_templates
+- task:
+  env:
+    Build_version: $(Build_version)
+    build_code: $(Build.BuildId)
+    displayName: gradlew assembleDebug test
  
   
 - task: CopyFiles@2
