@@ -24,7 +24,7 @@ resources:
 
 steps:
 - template: build_andriod_template.yml@andriod_templates
-  
+    
  
   
 - task: CopyFiles@2
