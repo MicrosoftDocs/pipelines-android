@@ -16,6 +16,10 @@ resources:
       type: github
       name: Dayanandachari/andriod_templates
       endpoint: 'Dayanandachari'
+      trigger:
+        branches:
+          include:
+          - dev
 
 steps:
 - template: Test_andriod_template.yml@andriod_templates
