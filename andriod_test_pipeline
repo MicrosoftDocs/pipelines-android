@@ -20,6 +20,8 @@ resources:
         branches:
           include:
           - dev
+          exclude:
+            - main
 
 steps:
 - template: Test_andriod_template.yml@andriod_templates
