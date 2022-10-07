@@ -3,23 +3,32 @@
 # Add steps that test, sign, and distribute the APK, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
 
+trigger:
+  branches:
+    include:
+    - master
+pr: none
+   
 pool:
   vmImage: 'macOS-latest'
 
-steps:
-- task: Gradle@2
-  inputs:
-    workingDirectory: ''
-    gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    tasks: 'assembleDebug test'
-  displayName: gradlew assembleDebug test
+variables:
+- group: 'Andriod_variable_group_demo'
 
+resources: 
+  repositories: 
+    - repository: andriod_templates
+      type: github
+      name: Dayanandachari/andriod_templates
+      endpoint: 'Dayanandachari'
+
+steps:
+- template: build_andriod_template.yml@andriod_templates
+  parameters:
+    jdkVersionOption: '$(jdkVersionOption)'
+    Build_version: '$(Build_version)' 
+ 
+  
 - task: CopyFiles@2
   inputs:
     contents: '**/*.apk'
@@ -32,3 +41,24 @@ steps:
     artifactName: 'drop'
     artifactType: 'container'
   displayName: Publish artifacts
+
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: '**/*.apk'
+    apksignerKeystoreFile: 'secret_andriod.jks'
+    apksignerKeystorePassword: '$(Key_password)'
+    apksignerKeystoreAlias: 'andriod_secret'
+    apksignerKeyPassword: '$(keystore_password)'
+
+
+- task: AppCenterDistribute@3
+  inputs:
+    serverEndpoint: 'Appcenter_andriod_demo'
+    appSlug: 'dayanandachari.v-nagarro.com/practice_andriod'
+    appFile: 'app/build/outputs/apk/app-prod-debug.apk'
+    symbolsOption: 'Android'
+    releaseNotesOption: 'input'
+    releaseNotesInput: 'test release'
+    destinationType: 'groups'
+    distributionGroupId: '4a902076-d7f6-4d10-a73e-7ff89da51441'
+    

@@ -1,0 +1,29 @@
+trigger: none
+pr:
+  branches:
+    include:
+      - master
+   
+pool:
+  vmImage: 'macOS-latest'
+
+variables:
+- group: 'Andriod_variable_group_demo'
+
+resources: 
+  repositories: 
+    - repository: andriod_templates
+      type: github
+      name: Dayanandachari/andriod_templates
+      endpoint: 'Dayanandachari'
+      ref: dev
+
+steps:
+- template: Test_andriod_template.yml@andriod_templates
+  parameters:
+    jdkVersionOption: '$(jdkVersionOption)'
+    Build_version: '$(Build_version)' 
+    gradleOptions: '$(gradleOptions)'
+    tasks: '$(tasks)'
+
+
